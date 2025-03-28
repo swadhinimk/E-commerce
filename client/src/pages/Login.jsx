@@ -1,25 +1,44 @@
-import React from 'react';
-import './Login.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  return (
-    <div className="login-container">
-      <div className="login-card">
-        <h1 className="login-title">Welcome to Divine E-commerce</h1>
-        <form className="login-form">
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" />
-          </div>
-          <button type="submit" className="login-button">Login</button>
-        </form>
-      </div>
-    </div>
-  );
+    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Handle login logic here
+        console.log('Name:', name);
+        console.log('Password:', password);
+    };
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Name:</label>
+                    <input 
+                        type="text" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input 
+                        type="password" 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
+                        required 
+                    />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p>Not registered? <Link to="/signup">Sign up</Link></p>
+        </div>
+    );
 };
 
 export default Login;
